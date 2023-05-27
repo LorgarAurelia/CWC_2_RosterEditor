@@ -33,7 +33,7 @@ namespace CWC_2_RosterEditor
             ArmySwitcher.ItemsSource= armyNames;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ApplyRosterSettings(object sender, RoutedEventArgs e)
         {
             if (ArmySwitcher.Text == string.Empty || IsText(PointsBox.Text))
                 MessageBox.Show(UserMessages.ErrorsDuringRosterCreation);

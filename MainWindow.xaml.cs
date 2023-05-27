@@ -28,11 +28,14 @@ namespace CWC_2_RosterEditor
         public MainWindow()
         {
             InitializeComponent();
-            
-            _repository = FileRepository.GetInstance(ConfigurationManager.AppSettings.Get("ArmyRoute"));
+            LoadSettings();
             CreateRoster();
-            WindowState = WindowState.Maximized; //TODO: Move to Configuration
             FillListOfUnits();
+        }
+        private void LoadSettings()
+        {
+            _repository = FileRepository.GetInstance(ConfigurationManager.AppSettings.Get("ArmyRoute"));
+            WindowState = (WindowState)int.Parse(ConfigurationManager.AppSettings.Get("WindowState"));
         }
         private void CreateRoster()
         {

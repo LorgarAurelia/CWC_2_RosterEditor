@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Выберите армилист" Height="234" Width="227">
     <Grid>
-        <Button Content="OK" HorizontalAlignment="Left" Margin="72,152,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="-13.285,0.346" Height="35" Width="64"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="72,152,0,0" VerticalAlignment="Top" Click="ApplyRosterSettings" RenderTransformOrigin="-13.285,0.346" Height="35" Width="64"/>
         <ComboBox x:Name="ArmySwitcher" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="188" Height="40"/>
         <TextBox x:Name="PointsBox" HorizontalAlignment="Left" Margin="10,98,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="188" Height="25"/>
         <Label Content="Points Limit
