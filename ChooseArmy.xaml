@@ -1,0 +1,17 @@
+﻿<Window x:Class="CWC_2_RosterEditor.ChooseArmy"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CWC_2_RosterEditor"
+        mc:Ignorable="d"
+        Title="Выберите армилист" Height="234" Width="227">
+    <Grid>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="72,152,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="-13.285,0.346" Height="35" Width="64"/>
+        <ComboBox x:Name="ArmySwitcher" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="188" Height="40"/>
+        <TextBox x:Name="PointsBox" HorizontalAlignment="Left" Margin="10,98,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="188" Height="25"/>
+        <Label Content="Points Limit
+               " HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
