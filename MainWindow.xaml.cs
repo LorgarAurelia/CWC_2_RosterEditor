@@ -1,5 +1,6 @@
 ﻿using CWC_2_RosterEditor.FileService;
 using CWC_2_RosterEditor.FileService.Models;
+using CWC_2_RosterEditor.RosterCalculation;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,7 +24,7 @@ namespace CWC_2_RosterEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private FileRepository _repository;
+        private IRepository _repository;
         private Roster _roster;
         public MainWindow()
         {
@@ -42,17 +43,17 @@ namespace CWC_2_RosterEditor
             ChooseArmy armySwitcher = new(_repository.GetArmyLists());
             armySwitcher.ShowDialog();
             _roster = new(armySwitcher.Army, armySwitcher.PointsLimit);
+            //RosterBox.ItemsSource = _roster.Units;
         }
         private void FillListOfUnits()
         {
-            foreach (var unit in _repository.GetArmilistContent(_roster.Army).Units)
-                ListOfUnit.Items.Add(unit);
+            ListOfUnit.ItemsSource = _repository.GetArmilistContent(_roster.Army).Units;
         }
 
         private void AddUnitToRoster(object sender, RoutedEventArgs e)
         {
             var unit = ((Button)sender).DataContext as Unit;
-            _roster.Units.Add(new() { Name = unit.Name, TotalCost = unit.Points });
+            RosterEditor.AddUnit(_roster, unit);
         }
     }
 }

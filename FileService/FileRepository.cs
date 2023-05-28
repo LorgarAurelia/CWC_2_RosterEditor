@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace CWC_2_RosterEditor.FileService
 {
-    public class FileRepository
+    public class FileRepository : IRepository
     {
         private static FileRepository? _instance;
         private Dictionary<string, string> _armies;
@@ -31,7 +31,7 @@ namespace CWC_2_RosterEditor.FileService
 
             return result;
         }
-        public static FileRepository GetInstance(string path)
+        public static IRepository GetInstance(string path)
         {
             _instance ??= new(path);
             return _instance;

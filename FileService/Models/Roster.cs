@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace CWC_2_RosterEditor.FileService.Models
 {
     public class Roster
     {
-        public List<SelectedOptions> Units { get; set; }
+        public ObservableCollection<SelectedOptions> Units { get; set; }
         public ushort PointsLimit { get; set; }
         public ushort CurentPoints { get; set; }
         public string Army { get; set; }
