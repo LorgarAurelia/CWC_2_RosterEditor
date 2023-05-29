@@ -15,7 +15,7 @@ namespace CWC_2_RosterEditor.FileService.Models
         AC,
         AFV,
         Upgrade,
-        INFSI,
+        INFSF,
         INFAT,
         SPAT,
         INFATGW,
