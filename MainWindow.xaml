@@ -58,9 +58,10 @@
         <Label x:Name="MaxPoints" Content="0" Grid.Column="3" Margin="369,30,-116,500"/>
         <Menu VerticalAlignment="Top" Grid.ColumnSpan="4" Margin="0,0,0,0" Height="26" HorizontalAlignment="Left" Width="1241">
             <MenuItem Header="File">
+                <MenuItem Header="Open" Click="LoadRoster"/>
+                <MenuItem Header="New" Click="CreateRoster"/>
                 <MenuItem Header="Save" Click="Save"/>
-                <MenuItem Header="Open"/>
-                <MenuItem Header="Print as text"/>
+                <MenuItem Header="Print as chat text"/>
             </MenuItem>
         </Menu>
     </Grid>

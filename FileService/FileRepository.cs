@@ -17,7 +17,7 @@ namespace CWC_2_RosterEditor.FileService
         {
             PathToArmylist = pathToArmylist;
             PathToRosters = pathToRosters;
-            _armies = ParseArmyLists(Directory.GetFiles(PathToArmylist, "*.json"));
+            _armies = ParseArmyLists(Directory.GetFiles(PathToArmylist, "*.json"));//TODO: Вынести в метод GetArmyLists
         }
         private static Dictionary<string, string> ParseArmyLists(string[] armyLists)
         {
@@ -53,6 +53,14 @@ namespace CWC_2_RosterEditor.FileService
         {
             var json = JsonConvert.SerializeObject(roster);
             File.WriteAllText(PathToRosters + roster.RosterName + ".json",json);
+        }
+
+        public string[] GetAllRosters() => Directory.GetFiles(PathToRosters, "*.json");
+
+        public Roster OpenRoster(string path)
+        {
+            var json = File.ReadAllText(path);
+            return JsonConvert.DeserializeObject<Roster>(json);
         }
     }
 }

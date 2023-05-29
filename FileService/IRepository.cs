@@ -8,5 +8,7 @@ namespace CWC_2_RosterEditor.FileService
         ArmyList GetArmilistContent(string army);
         Dictionary<string, string> GetArmyLists();
         void SaveRoster(Roster roster);
+        string[] GetAllRosters();
+        Roster OpenRoster(string path);
     }
 }

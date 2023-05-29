@@ -29,25 +29,41 @@ namespace CWC_2_RosterEditor
         {
             InitializeComponent();
             LoadSettings();
-            CreateRoster();
-            FillUI();
         }
         private void LoadSettings()
         {
             _repository = FileRepository.GetInstance(ConfigurationManager.AppSettings.Get("ArmyRoute"), ConfigurationManager.AppSettings.Get("PathToSave"));
             WindowState = (WindowState)int.Parse(ConfigurationManager.AppSettings.Get("WindowState"));
         }
-        private void CreateRoster()
+        private void CreateRoster(object sender, RoutedEventArgs e)
         {
             ChooseArmy armySwitcher = new(_repository.GetArmyLists());
-            armySwitcher.ShowDialog();
-            _roster = new(armySwitcher.Army, armySwitcher.PointsLimit, armySwitcher.RosterName);
-            RosterBox.ItemsSource = _roster.Units;
+            if (armySwitcher.ShowDialog() == true)
+            {
+                _roster = new(armySwitcher.Army, armySwitcher.PointsLimit, armySwitcher.RosterName);
+                RosterBox.ItemsSource = _roster.Units;
+                FillUI();
+            }
+        }
+        private void LoadRoster(object sender, RoutedEventArgs e)
+        {
+            string[] allRosters = _repository.GetAllRosters();
+            if(allRosters.Length == 0)
+                MessageBox.Show(UserMessages.NoRosters);
+
+            ChooseRoster rosterSwitcher = new(allRosters);
+            if (rosterSwitcher.ShowDialog() == true)
+            {
+                _roster = _repository.OpenRoster(rosterSwitcher.ChoosedRoster);
+                RosterBox.ItemsSource = _roster.Units;
+                FillUI();
+            }
         }
         private void FillUI()
         {
             ListOfUnit.ItemsSource = _repository.GetArmilistContent(_roster.Army).Units;
             MaxPoints.Content = _roster.PointsLimit;
+            CurrentPoints.Content = _roster.CurentPoints;
         }
 
         private void AddUnitToRoster(object sender, RoutedEventArgs e)
@@ -65,6 +81,7 @@ namespace CWC_2_RosterEditor
         private void Save(object sender, RoutedEventArgs e)
         {
             _repository.SaveRoster(_roster);
+            MessageBox.Show(UserMessages.Saved);
             //TODO: Show some validation erros if they exists
         }
     }

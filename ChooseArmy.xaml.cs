@@ -46,6 +46,10 @@ namespace CWC_2_RosterEditor
                 DialogResult = true;
             }
         }
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
         private static bool IsText(string content)
         {
             Regex regex = new("[^0-9.-]+");

@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CWC_2_RosterEditor"
         mc:Ignorable="d"
-        Title="Выберите армилист" Height="280" Width="227">
+        Title="Create Roster" Height="280" Width="220">
     <Grid Margin="0,0,0,-6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="84*"/>
             <ColumnDefinition Width="143*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="OK" HorizontalAlignment="Left" Margin="72,195,0,0" VerticalAlignment="Top" Click="ApplyRosterSettings" RenderTransformOrigin="-13.285,0.346" Height="35" Width="64" Grid.ColumnSpan="2"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="4,195,0,0" VerticalAlignment="Top" Click="ApplyRosterSettings" RenderTransformOrigin="-13.285,0.346" Height="35" Width="84" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="ArmySwitcher" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="188" Height="40" Grid.ColumnSpan="2"/>
         <TextBox x:Name="PointsBox" HorizontalAlignment="Left" Margin="10,98,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="188" Height="25" Grid.ColumnSpan="2"/>
         <Label Content="Points Limit
                " HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Roster Name" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="RosterNameBox" HorizontalAlignment="Left" Margin="10,159,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="188" Height="25" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="RosterNameBox" HorizontalAlignment="Left" Margin="10,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188" Height="25" Grid.ColumnSpan="2"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Click="Cancel" RenderTransformOrigin="-13.285,0.346" Height="35" Width="104" Grid.Column="1"/>
     </Grid>
 </Window>

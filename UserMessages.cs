@@ -9,5 +9,8 @@ namespace CWC_2_RosterEditor
     public static class UserMessages
     {
         public const string ErrorsDuringRosterCreation = "Введите количество очков и выбирете армию";
+        public const string UnselectedRoster = "Select your roster";
+        public const string NoRosters = "Rosters was not found";
+        public const string Saved = "Roster successfully saved";
     }
 }
