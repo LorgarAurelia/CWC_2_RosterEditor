@@ -1,6 +1,5 @@
 ﻿using CWC_2_RosterEditor.FileService;
 using CWC_2_RosterEditor.FileService.Models;
-using CWC_2_RosterEditor.RosterCalculation;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -31,29 +30,42 @@ namespace CWC_2_RosterEditor
             InitializeComponent();
             LoadSettings();
             CreateRoster();
-            FillListOfUnits();
+            FillUI();
         }
         private void LoadSettings()
         {
-            _repository = FileRepository.GetInstance(ConfigurationManager.AppSettings.Get("ArmyRoute"));
+            _repository = FileRepository.GetInstance(ConfigurationManager.AppSettings.Get("ArmyRoute"), ConfigurationManager.AppSettings.Get("PathToSave"));
             WindowState = (WindowState)int.Parse(ConfigurationManager.AppSettings.Get("WindowState"));
         }
         private void CreateRoster()
         {
             ChooseArmy armySwitcher = new(_repository.GetArmyLists());
             armySwitcher.ShowDialog();
-            _roster = new(armySwitcher.Army, armySwitcher.PointsLimit);
-            //RosterBox.ItemsSource = _roster.Units;
+            _roster = new(armySwitcher.Army, armySwitcher.PointsLimit, armySwitcher.RosterName);
+            RosterBox.ItemsSource = _roster.Units;
         }
-        private void FillListOfUnits()
+        private void FillUI()
         {
             ListOfUnit.ItemsSource = _repository.GetArmilistContent(_roster.Army).Units;
+            MaxPoints.Content = _roster.PointsLimit;
         }
 
         private void AddUnitToRoster(object sender, RoutedEventArgs e)
         {
             var unit = ((Button)sender).DataContext as Unit;
-            RosterEditor.AddUnit(_roster, unit);
+            _roster.AddUnit(unit);
+            CurrentPoints.Content = _roster.CurentPoints;
+        }
+        private void DeleteUnitFromRoster(object sender, RoutedEventArgs e)
+        {
+            var selection = ((Button)sender).DataContext as SelectedOptions;
+            _roster.RemoveSelection(selection);
+            CurrentPoints.Content = _roster.CurentPoints;
+        }
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            _repository.SaveRoster(_roster);
+            //TODO: Show some validation erros if they exists
         }
     }
 }

@@ -11,11 +11,13 @@ namespace CWC_2_RosterEditor.FileService
     {
         private static FileRepository? _instance;
         private Dictionary<string, string> _armies;
-        public string RepositoryPath { get; private set; }
-        private FileRepository(string path)
+        public string PathToArmylist { get; private set; }
+        public string PathToRosters { get; private set; }
+        private FileRepository(string pathToArmylist, string pathToRosters)
         {
-            RepositoryPath = path;
-            _armies = ParseArmyLists(Directory.GetFiles(RepositoryPath, "*.json"));
+            PathToArmylist = pathToArmylist;
+            PathToRosters = pathToRosters;
+            _armies = ParseArmyLists(Directory.GetFiles(PathToArmylist, "*.json"));
         }
         private static Dictionary<string, string> ParseArmyLists(string[] armyLists)
         {
@@ -31,13 +33,13 @@ namespace CWC_2_RosterEditor.FileService
 
             return result;
         }
-        public static IRepository GetInstance(string path)
+        public static IRepository GetInstance(string pathToArmylist, string pathToRosters)
         {
-            _instance ??= new(path);
+            _instance ??= new(pathToArmylist, pathToRosters);
             return _instance;
         }
 
-        public void SetPath(string path) => RepositoryPath = path;
+        public void SetPath(string path) => PathToArmylist = path;
 
         public Dictionary<string, string> GetArmyLists() => _armies;
 
@@ -45,6 +47,12 @@ namespace CWC_2_RosterEditor.FileService
         {
             string json = File.ReadAllText(_armies[army]);
             return JsonConvert.DeserializeObject<ArmyList>(json);
+        }
+
+        public void SaveRoster(Roster roster)
+        {
+            var json = JsonConvert.SerializeObject(roster);
+            File.WriteAllText(PathToRosters + roster.RosterName + ".json",json);
         }
     }
 }

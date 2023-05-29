@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CWC_2_RosterEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="1000">
+        Title="Cold War Commander Roster Editor" Height="550" Width="1250">
     <Grid Margin="0,0,0,-28" Width="894" Height="NaN" HorizontalAlignment="Left">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="116*"/>
-            <ColumnDefinition Width="488*"/>
-            <ColumnDefinition Width="305*"/>
+            <ColumnDefinition Width="114*"/>
+            <ColumnDefinition Width="281*"/>
+            <ColumnDefinition Width="199*"/>
+            <ColumnDefinition Width="300*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="DoMagic" HorizontalAlignment="Left" Margin="333,6,0,0" VerticalAlignment="Top" Click="AddUnitToRoster" Grid.Column="1"/>
-        <ListView x:Name="ListOfUnit" Margin="10,31,35,39" Grid.ColumnSpan="2">
+        <Label x:Name="CurrentPoints" Content="0" Grid.Column="3" Margin="305,30,-50,500"/>
+        <ListView x:Name="ListOfUnit" Margin="10,31,35,39" Grid.ColumnSpan="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="OpenFile" Content=" + " Click="AddUnitToRoster"/>
+                                <Button x:Name="AddUnit" Content=" + " Click="AddUnitToRoster"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -38,7 +39,29 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <DataGrid x:Name="RosterBox" AutoGenerateColumns="True" Grid.Column="1" d:ItemsSource="{d:DynamicResource ResourceKey=_roster.Units}" Grid.ColumnSpan="2" Margin="480,31,0,39"/>
-
+        <ListView x:Name="RosterBox" Grid.Column="2" d:ItemsSource="{d:DynamicResource ResourceKey=_roster.Units}" Grid.ColumnSpan="2" Margin="199,31,0,39">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="DeleteUnit" Content=" - " Click="DeleteUnitFromRoster"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Cost}">Cost</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="/" Grid.Column="3" Margin="350,30,-64,500"/>
+        <Label x:Name="MaxPoints" Content="0" Grid.Column="3" Margin="369,30,-116,500"/>
+        <Menu VerticalAlignment="Top" Grid.ColumnSpan="4" Margin="0,0,0,0" Height="26" HorizontalAlignment="Left" Width="1241">
+            <MenuItem Header="File">
+                <MenuItem Header="Save" Click="Save"/>
+                <MenuItem Header="Open"/>
+                <MenuItem Header="Print as text"/>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>

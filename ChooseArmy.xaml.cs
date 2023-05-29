@@ -21,6 +21,7 @@ namespace CWC_2_RosterEditor
     public partial class ChooseArmy : Window
     {
         public string Army { get; private set; }
+        public string RosterName { get; private set; }
         public ushort PointsLimit { get; private set; }
         public ChooseArmy(Dictionary<string, string> armyLists)
         {
@@ -41,6 +42,7 @@ namespace CWC_2_RosterEditor
             {
                 Army = ArmySwitcher.Text;
                 PointsLimit = ushort.Parse(PointsBox.Text);
+                RosterName = RosterNameBox.Text;//TODO: Добавить проверку на валидность названия.
                 DialogResult = true;
             }
         }
@@ -49,14 +51,5 @@ namespace CWC_2_RosterEditor
             Regex regex = new("[^0-9.-]+");
             return regex.IsMatch(content);
         }
-        //private void ArmySwitcher_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-            
-        //}
-
-        //private void Points_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-            
-        //}
     }
 }
