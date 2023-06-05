@@ -64,5 +64,6 @@
                 <MenuItem Header="Print as chat text"/>
             </MenuItem>
         </Menu>
+        <Label Content="Points" Grid.Column="3" Margin="305,0,-83,530"/>
     </Grid>
 </Window>

@@ -82,7 +82,7 @@ namespace CWC_2_RosterEditor
         {
             _repository.SaveRoster(_roster);
             MessageBox.Show(UserMessages.Saved);
-            //TODO: Show some validation erros if they exists
+            //TODO: Show some validation erros if they exists(Собрать перед этим фидбэк по формату вывода ошибок)
         }
     }
 }
